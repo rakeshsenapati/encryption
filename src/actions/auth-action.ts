@@ -1,7 +1,8 @@
 'use server'
+const baseUrl = process.env.CLIENT_URL || 'http://localhos:3000'
 export const createMessage = async (formData: FormData) => {
     try {
-        const res = await fetch('http://localhost:3000/api/messages', {
+        const res = await fetch(baseUrl + '/api/messages', {
             body: formData, method: 'POST',
         })
         const resData = await res.json()
@@ -15,7 +16,7 @@ export const createMessage = async (formData: FormData) => {
 
 export async function getMessage(id: string) {
     try {
-        const res = await fetch('http://localhost:3000/api/messages?id=' + id, { cache: 'no-store' })
+        const res = await fetch(baseUrl + '/api/messages?id=' + id, { cache: 'no-store' })
         const resData = await res.json();
         return resData
     } catch (error) {
