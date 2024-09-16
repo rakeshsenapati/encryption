@@ -4,6 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { decryptMessage } from '@/lib/encryption';
 import Link from 'next/link';
 import React from 'react'
+import CopyButton from './CopyButton';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
     const message = await getMessage(id);
@@ -24,7 +25,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
 
             </div>
             <div className='flex justify-end gap-2 mt-2'>
-                <Button className='bg-white hover:bg-white text-black'>Copy</Button>
+                <CopyButton message={decryptedMessage} />
                 <Link href={'/'} ><Button className='bg-black border-white text-white'>Share Another</Button></Link>
             </div>
         </>
